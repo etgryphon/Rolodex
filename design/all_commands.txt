@@ -1,0 +1,40 @@
+sc-init rolodex
+cd rolodex
+Models
+  sc-gen model Rolodex.Group
+  sc-gen model Rolodex.Contact
+  *open Rolodex Group*
+  ####
+    name: SC.Record.attr(String, { isRequired: YES, defaultValue: 'Group Name' }),
+    contacts: SC.Record.toMany('Rolodex.Contact', {
+      inverse: 'group', // set the key used to represent the inverse 
+      isMaster: YES // indicate whether changing this should dirty
+      })
+  ####
+  *open Rolodex Contact*
+  ####
+    group: SC.Record.toOne('Rolodex.Group'),
+    firstName: SC.Record.attr(String, { defaultValue: 'First' }),
+    lastName: SC.Record.attr(String, { defaultValue: 'Last' }),
+    phoneNumber: SC.Record.attr(String, { defaultValue: '555.555.5555' }),
+    // Computed Properties
+    displayName: function(){
+      var fn = this.get('firstName'), 
+          ln = this.get('lastName'), 
+          dn, cn;
+      if (fn || ln){
+        dn = "%@, %@".fmt((ln || ''), (fn || ''));
+      }
+      return dn;    
+    }.property('firstName', 'lastName').cacheable()
+  ####
+  *do the fixtures
+Controllers
+  sc-gen controller Rolodex.groupsController
+    - Edit to be an ArrayController
+    - Add content and selection
+  sc-gen controller Rolodex.groupController
+    - Add bindings
+  sc-gen controller Rolodex.contactsController
+    - Edit to be an ArrayController
+    - Add contentBinding and selection
