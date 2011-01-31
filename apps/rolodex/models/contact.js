@@ -18,14 +18,24 @@ Rolodex.Contact = SC.Record.extend(
   lastName: SC.Record.attr(String, { defaultValue: 'Last' }),
   phoneNumber: SC.Record.attr(String, { defaultValue: '555.555.5555' }),
   // Computed Properties
-  displayName: function(){
-    var fn = this.get('firstName'), 
-        ln = this.get('lastName'), 
-        dn, cn;
-    if (fn || ln){
-      dn = "%@, %@".fmt((ln || ''), (fn || ''));
+  displayName: function(key, value){
+    var fn, ln, fullName;
+    if (value !== undefined){
+      fullName = value.split(',') || [];
+      ln = fullName[0].trim();
+      this.set('lastName', ln);
+      if (fullName.length > 0){
+        fn = fullName[1].trim();
+        this.set('firstName', fn);
+      }
     }
-    return dn;    
+    else {
+      fn = this.get('firstName');
+      ln = this.get('lastName');
+      value = "%@, %@".fmt((ln || ''), (fn || ''));
+    }
+    
+    return value;    
   }.property('firstName', 'lastName').cacheable()
   
 

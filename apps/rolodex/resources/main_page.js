@@ -48,6 +48,7 @@ Rolodex.mainPage = SC.Page.design({
       layout: { left: 0.25, top: 56, minWidth: 259, width: 0.25, bottom: 36 },
       rowHeight: 43,
       rowSpacing: 2,
+      canEditContent: YES,
       selectionBinding: SC.Binding.from('Rolodex.contactsController.selection'),
       contentBinding: SC.Binding.from('Rolodex.contactsController'),
       contentValueKey: 'displayName'
