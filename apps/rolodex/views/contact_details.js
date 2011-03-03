@@ -16,12 +16,14 @@ Rolodex.ContactDetailsView = SC.View.extend( SC.ContentDisplay,
   displayProperties: 'content'.w(),
   contentDisplayProperties: 'firstName lastName phoneNumber'.w(),
   
-  render: function(context, firstTime){
+  render: function(context){
     var addrs, comp, c = this.get('content');
     if (c){
+      context = context.begin('div').addClass('card');
       context = context.begin('span').addClass('firstName').text(c.get('firstName')).end();
       context = context.begin('span').addClass('lastName').text(c.get('lastName')).end();
       context = context.begin('span').addClass('phone').text(c.get('phoneNumber')).end();
+      context = context.end();
     }
   }
 

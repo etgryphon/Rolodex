@@ -26,7 +26,7 @@ Rolodex.mainPage = SC.Page.design({
     
     groupList: SC.ListView.design({
       classNames: ['master-list'],
-      layout: { left: 0, top: 56, minWidth: 259, width: 0.25, bottom: 36 },
+      layout: { left: 0, top: 56, minWidth: 259, width: 0.25, bottom: 0 },
       rowHeight: 43,
       rowSpacing: 2,
       canEditContent: YES,
@@ -45,7 +45,7 @@ Rolodex.mainPage = SC.Page.design({
     
     nameList: SC.ListView.design({
       classNames: ['master-list'],
-      layout: { left: 0.25, top: 56, minWidth: 259, width: 0.25, bottom: 36 },
+      layout: { left: 0.25, top: 56, minWidth: 259, width: 0.25, bottom: 0 },
       rowHeight: 43,
       rowSpacing: 2,
       canEditContent: YES,
@@ -64,7 +64,7 @@ Rolodex.mainPage = SC.Page.design({
     
     detailsView: Rolodex.ContactDetailsView.design({
       classNames: ['details'],
-      layout: { left: 0.5, top: 56, minWidth: 259, width: 0.5, bottom: 36 },
+      layout: { left: 0.5, top: 56, minWidth: 259, width: 0.5, bottom: 0 },
       contentBinding: SC.Binding.from('Rolodex.contactController').oneWay()
     })
   })
